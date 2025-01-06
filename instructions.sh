@@ -1,15 +1,19 @@
 #!/bin/bash
-
-#MultiLine Comment
-<<comment
- if [ 1 -eq 1 -a 1 = 1 ] 
- if [ 1 -eq 1 ] && [ 1 = 1 ]
-comment
-
-if [[ 1 -eq 1 && 1 = 1 ]]
-# if ((1 == 1))
+<<AIM
+    Script for running Python codes only
+AIM
+contents=`ls .`
+isFound=0
+set -x
+for file in $contents
+do
+if [ $1 = $file ]
 then
-echo "Both Conditions applied"
-else
-echo "None/Either of Conditions applied"
+op=`python3 $1`
+echo $op
+isFound=1
+break
 fi
+done
+set +x
+test $isFound -eq 1 || echo "File not found"
