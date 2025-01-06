@@ -1,28 +1,15 @@
 #!/bin/bash
-a="AhmedMontasser"
-echo ${#a}
-z=`echo $a | wc -m`
-echo $z
+function test1() {
+    echo "$1 $2"
+}
 
-b="SayedFatouh"
-if [ $a \< $b ]
-then
-echo "$a is less than $b"
-fi
+test1 Ahmed Montasser
 
-c="d"
-if [ -z $c ]
-then
-echo "Empty"
-fi
+function add(){
+    return $((5 + 6))
+}
 
-w="1083|Obour|Tahrir"
-IFS='|'
-read -ra LINE <<< ${w}
-for i in ${LINE[@]}
-do
-echo $i
-done
-start=$((12 - 2 + 1))
-echo ${a:$start:${#a}}
+add
+result=$?
+echo $result
 
