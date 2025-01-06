@@ -1,11 +1,28 @@
 #!/bin/bash
-read -sp "Print Date" response
-echo
-case $response in
-yes|YES|Yes|Y|y)
-echo `date`
-;;
-*)
-echo 'NO'
-;;
-esac
+a="AhmedMontasser"
+echo ${#a}
+z=`echo $a | wc -m`
+echo $z
+
+b="SayedFatouh"
+if [ $a \< $b ]
+then
+echo "$a is less than $b"
+fi
+
+c="d"
+if [ -z $c ]
+then
+echo "Empty"
+fi
+
+w="1083|Obour|Tahrir"
+IFS='|'
+read -ra LINE <<< ${w}
+for i in ${LINE[@]}
+do
+echo $i
+done
+start=$((12 - 2 + 1))
+echo ${a:$start:${#a}}
+
