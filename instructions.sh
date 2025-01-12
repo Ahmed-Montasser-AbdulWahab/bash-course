@@ -1,27 +1,46 @@
 #!/bin/bash
 
-#DECLARE ARRAY
-declare -a ARRAY=("A" "B" "C")
-ARRAY2=("D" "F")
+echo "CALCULATOR"
 
-#Count of Elements
-echo ${#ARRAY2[@]}
+read -sp "Please Enter First Digit" first_digit
 
-#Indexing
-echo ${ARRAY[2]}
+echo
 
-# for i in ${!ARRAY[@]}
-# do
-# echo $i
-# done
+read -sp "Please Enter Second Digit" second_digit
 
-# echo "${ARRAY[@]}"
-# unset ARRAY[1]
-# echo "${ARRAY[@]}"
+readonly first_digit
+readonly second_digit
 
-for i in ${ARRAY[@]}
+set -x
+select operation in add subtract multiply divide
 do
-echo $i
+case $operation in
+add|+|ADD|Add)
+((result=${first_digit}+${second_digit}))
+break
+;;
+sub|subtract|-|Subtract)
+((result=${first_digit}-${second_digit}))
+break
+;;
+mul|multiply|x)
+((result=${first_digit}*${second_digit}))
+break
+;;
+divide|div|/)
+if [ $second_digit -eq 0 ]
+then
+echo "Cannot divide by zero"
+else
+((result=${first_digit}/${second_digit}))
+fi
+break
+;;
+*)
+echo "can't calculate"
+break;
+;;
+esac
 done
-
-echo ${ARRAY[@]:1:1}
+echo "Result is ${result}"
+set +x
