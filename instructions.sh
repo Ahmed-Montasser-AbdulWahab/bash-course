@@ -1,15 +1,27 @@
 #!/bin/bash
-function test1() {
-    echo "$1 $2"
-}
 
-test1 Ahmed Montasser
+#DECLARE ARRAY
+declare -a ARRAY=("A" "B" "C")
+ARRAY2=("D" "F")
 
-function add(){
-    return $((5 + 6))
-}
+#Count of Elements
+echo ${#ARRAY2[@]}
 
-add
-result=$?
-echo $result
+#Indexing
+echo ${ARRAY[2]}
 
+# for i in ${!ARRAY[@]}
+# do
+# echo $i
+# done
+
+# echo "${ARRAY[@]}"
+# unset ARRAY[1]
+# echo "${ARRAY[@]}"
+
+for i in ${ARRAY[@]}
+do
+echo $i
+done
+
+echo ${ARRAY[@]:1:1}
